@@ -7,6 +7,7 @@
         // Pull Wiki info
         var searchArtist = $("#artistInput").val().trim();
         var wikiURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + searchArtist + "&srprop=snippet&format=json&origin=*"
+
         $("#artistInfo").empty();
         $.ajax({
             url: wikiURL,
@@ -26,6 +27,7 @@
         // Pull Wiki info
         var searchArtist = $("#artistInput").val().trim();
         var concertURL = // Ticketmaster API
+        
         
         $.ajax({
             url: concertURL,
