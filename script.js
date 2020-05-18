@@ -1,6 +1,6 @@
 // General wiki search AJAX call
+
     // Hiding and displaying main content boxes upon search
-    
     $("form").on("submit", function(event) {
         event.preventDefault();
         var searchCity = $("#cityInput").val().trim();
