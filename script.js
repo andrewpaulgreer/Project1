@@ -4,7 +4,7 @@ $("form").on("submit", function (event) {
   var genre = $("input[name='answer']:checked").val();
   var searchCity = $("#cityInput").val().trim();
   var concertURL =
-    "http://app.ticketmaster.com/discovery/v2/events.json?classificationName=" +
+    "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=" +
     genre +
     "&countryCode=US&city=" +
     searchCity +
@@ -139,7 +139,7 @@ $("form").on("submit", function (event) {
 
   // Display articles
   var articleURL =
-    "http://newsapi.org/v2/everything?q='" +
+    "https://newsapi.org/v2/everything?q='" +
     searchCity +
     " dining and food'&apiKey=20f727e0d91642b79b4a3da85e6cb53a";
 
@@ -152,26 +152,27 @@ $("form").on("submit", function (event) {
     $("#welcomeInfo").addClass("is-hidden");
     $("#articleResults").removeClass("is-hidden");
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 8; i++) {
       var articleHeadline = $("<p>")
         .addClass("title is-5")
         .text(response.articles[i].title)
-        .css("margin-bottom", "5px");
-      
-      var articleAbstract = $("<p>")
-        .text(response.articles[i].description)
         .css("margin-bottom", "15px");
+      
+      // var articleAbstract = $("<p>")
+      //   .text(response.articles[i].description)
+      //   .css("margin-bottom", "15px");
       
         var Link = $('<button class="button is-info is-outlined">')
         .click(function () {
           var articleLink = response.articles[i].url;
           window.open(articleLink, '_blank')
         })
-        .text("See Full Article");
+        .text("See Full Article")
+        .css("width", "100%");
       
       var separator = $("<hr>").css("background", "#808080");
 
-      $("#articleResults").append(articleHeadline, articleAbstract, Link, separator);
+      $("#articleResults").append(articleHeadline, Link, separator);
     }
   });
 });
