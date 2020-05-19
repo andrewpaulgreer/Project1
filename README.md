@@ -11,9 +11,9 @@ Our first group required us to develop an idea for a new web applicaiton using a
 * Met all the project requirements provided by instructors
 
 ## Images
-![Dashboard example 1](https://drive.google.com/file/d/1_OfF_MoUOMZgXqtn_P_TxpZPJe1a2pM9/view?usp=sharing)
+![Dashboard example 1](./media/deployed.PNG)
 
-![Dashboard example 2](https://drive.google.com/file/d/1gd-jQlaXoaLzgiVfp6akTlqunqERy9qG/view?usp=sharing)
+![Dashboard example 2](./media/deployed2.PNG)
 
 ## Site Link
 https://andrewpaulgreer.github.io/Project1/
