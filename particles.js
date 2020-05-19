@@ -1,7 +1,7 @@
 var particleSettings ={
   "particles": {
     "number": {
-      "value": 250,
+      "value": 75,
       "density": {
         "enable": true,
         "value_area": 320.4794372381079
