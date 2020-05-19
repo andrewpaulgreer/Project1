@@ -1,9 +1,8 @@
-// General wiki search AJAX call
-
-// Hiding and displaying main content boxes upon search
+// Form submit event to display API information
 $("form").on("submit", function (event) {
   event.preventDefault();
 
+  // Display upcoming concerts
   var genre = $("input[name='answer']:checked").val();
   var searchCity = $("#cityInput").val().trim();
   var concertURL =
@@ -22,48 +21,35 @@ $("form").on("submit", function (event) {
     for (var i = 0; i < 3; i++) {
       var eventName = $("<h1>").text(concerts._embedded.events[i].name);
       eventName.css({
-        "font-size": "30px",
+        "font-size": "24px",
         "text-allign": "center",
       });
-      $("#artistShows").append(eventName);
 
       var genre = $("<p>").text(
         "Genre: " + concerts._embedded.events[i].classifications[0].genre.name
       );
-      $("#artistShows").append(genre);
 
       var artistName = $("<p>").text(
         "Artist Name: " +
           concerts._embedded.events[i]._embedded.attractions[0].name
       );
-      $("#artistShows").append(artistName);
 
       var StartDate = $("<p>").text(
         "Date: " + concerts._embedded.events[i].dates.start.localDate
       );
-      $("#artistShows").append(StartDate);
 
       var StartTime = $("<p>").text(
         "Time: " + concerts._embedded.events[i].dates.start.localTime
       );
-      $("#artistShows").append(StartTime);
-
-      // var priceHigh = $("<p>").text("Price (high): " + concerts._embedded.events[i].priceRanges[0].max || "this informaiton is not available at the time")
-      // $("#artistShows").append(priceHigh);
-
-      // var priceLow = $("<p>").text("Price (low): " + concerts._embedded.events[i].priceRanges[0].min || "this information is not available at the time")
-      // $("#artistShows").append(priceLow);
 
       var venueName = $("<p>").text(
         "Venue: " + concerts._embedded.events[i]._embedded.venues[0].name
       );
-      $("#artistShows").append(venueName);
 
       var venueAddress = $("<p>").text(
         "Address: " +
           concerts._embedded.events[i]._embedded.venues[0].address.line1
-      );
-      $("#artistShows").append(venueAddress);
+      ).css("margin-bottom", "10px");
 
       var ticketLink = concerts._embedded.events[i].url;
       var newLink = $('<button class="button is-info is-inverted is-outlined">')
@@ -73,13 +59,9 @@ $("form").on("submit", function (event) {
         })
         .text("Click here to buy a ticket!");
 
-      $("#artistShows").append(newLink);
+      $("#artistShows").append(eventName, genre, artistName, StartDate, StartTime, venueName, venueAddress, newLink);
       $("#artistShows").append("<hr>");
     }
-    // make the div show up, and others dissapear
-
-    $("#welcomeInfo").addClass("is-hidden");
-    $("#artistShows").removeClass("is-hidden");
   });
 
   // Pull Wiki info
@@ -87,14 +69,6 @@ $("form").on("submit", function (event) {
     "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exsentences=25&exlimit=3&titles=" +
     searchCity +
     "&explaintext=1&formatversion=2&format=json&origin=*";
-
-  // "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exsentences=10&exlimit=1&titles=" + searchCity + "&explaintext=1&formatversion=2&format=json&origin=*"
-
-  // "https://en.wikipedia.org/w/api.php?action=parse&page=" + searchCity + "&prop=wikitext&formatversion=2&format=json&origin=*"
-
-  // "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + searchCity + "&srprop=snippet&format=json&origin=*"
-
-  // "https://en.wikipedia.org/w/api.php?action=parse&page=" + searchCity + "&format=json&origin=*"
 
   $("#cityInfo").empty();
   $.ajax({
@@ -119,33 +93,42 @@ $("form").on("submit", function (event) {
   var articleURL =
     "http://newsapi.org/v2/everything?q='" +
     searchCity +
-    " dining'&apiKey=20f727e0d91642b79b4a3da85e6cb53a";
-
-  $("#articleResults").empty();
+    " dining and food'&apiKey=20f727e0d91642b79b4a3da85e6cb53a";
 
   $.ajax({
     url: articleURL,
     method: "GET",
   }).then(function (response) {
     console.log(response);
+    
+    $("#welcomeInfo").addClass("is-hidden");
+    $("#articleResults").removeClass("is-hidden");
 
-    for (var i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
       var articleHeadline = $("<p>")
         .addClass("title is-5")
         .text(response.articles[i].title)
         .css("margin-bottom", "5px");
+      
       var articleAbstract = $("<p>")
         .text(response.articles[i].description)
         .css("margin-bottom", "15px");
+      
+        var Link = $('<button class="button is-info is-outlined">')
+        .click(function () {
+          var articleLink = response.articles[i].url;
+          window.open(articleLink, '_blank')
+        })
+        .text("See Full Article");
+      
       var separator = $("<hr>").css("background", "#808080");
 
-      $("#articleResults").removeClass("is-hidden");
-
-      $("#articleResults").append(articleHeadline, articleAbstract, separator);
+      $("#articleResults").append(articleHeadline, articleAbstract, Link, separator);
     }
   });
 });
 
+// Particles
 var jsonUri = "data:text/plain;base64," + window.btoa(JSON.stringify(particleSettings));
 console.log(jsonUri);
 particlesJS.load("particles-js", jsonUri);
