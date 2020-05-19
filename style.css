@@ -23,6 +23,10 @@ html {
     left: 0
 }
 
+.section{
+    margin-bottom: 50px;
+}
+
 .navbar {
     opacity: .8;
 }
@@ -46,6 +50,43 @@ html {
     font-family: 'Dosis', sans-serif;
     margin-bottom: 5px;
     font-size: 28px;
+}
+
+
+.our-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: grey ;
+    color: light;
+    text-align: center;
+    opacity: .9;
+    margin-top: 100px;
+    
+  }
+
+.footer-title{
+    padding-top: 1px;
+    padding-bottom: 0px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0px;
+    margin-top: 0%;
+    background-color: grey;
+    color: light;
+    opacity: none;
+}
+
+.images-api{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: grey;
+    opacity: none;
 }
 
 
