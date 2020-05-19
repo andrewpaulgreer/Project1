@@ -118,14 +118,6 @@ $("form").on("submit", function (event) {
     searchCity +
     "&explaintext=1&formatversion=2&format=json&origin=*";
 
-  // "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exsentences=10&exlimit=1&titles=" + searchCity + "&explaintext=1&formatversion=2&format=json&origin=*"
-
-  // "https://en.wikipedia.org/w/api.php?action=parse&page=" + searchCity + "&prop=wikitext&formatversion=2&format=json&origin=*"
-
-  // "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + searchCity + "&srprop=snippet&format=json&origin=*"
-
-  // "https://en.wikipedia.org/w/api.php?action=parse&page=" + searchCity + "&format=json&origin=*"
-
   $("#cityInfo").empty();
   $.ajax({
     url: wikiURL,
@@ -149,29 +141,37 @@ $("form").on("submit", function (event) {
   var articleURL =
     "http://newsapi.org/v2/everything?q='" +
     searchCity +
-    " dining'&apiKey=20f727e0d91642b79b4a3da85e6cb53a";
-
-  $("#articleResults").empty();
+    " dining and food'&apiKey=20f727e0d91642b79b4a3da85e6cb53a";
 
   $.ajax({
     url: articleURL,
     method: "GET",
   }).then(function (response) {
     console.log(response);
+    
+    $("#welcomeInfo").addClass("is-hidden");
+    $("#articleResults").removeClass("is-hidden");
 
-    for (var i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
       var articleHeadline = $("<p>")
         .addClass("title is-5")
         .text(response.articles[i].title)
         .css("margin-bottom", "5px");
+      
       var articleAbstract = $("<p>")
         .text(response.articles[i].description)
         .css("margin-bottom", "15px");
+      
+        var Link = $('<button class="button is-info is-outlined">')
+        .click(function () {
+          var articleLink = response.articles[i].url;
+          window.open(articleLink, '_blank')
+        })
+        .text("See Full Article");
+      
       var separator = $("<hr>").css("background", "#808080");
 
-      $("#articleResults").removeClass("is-hidden");
-
-      $("#articleResults").append(articleHeadline, articleAbstract, separator);
+      $("#articleResults").append(articleHeadline, articleAbstract, Link, separator);
     }
   });
 });
