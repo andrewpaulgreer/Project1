@@ -1,6 +1,7 @@
 $("form").on("submit", function (event) {
   event.preventDefault();
   // everything for the ticketmaster API
+  $("#artistResults").removeClass("is-offset-2")
   var genre = $("input[name='answer']:checked").val();
   var searchCity = $("#cityInput").val().trim();
   var concertURL =
