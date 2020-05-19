@@ -23,6 +23,19 @@ html {
     left: 0
 }
 
+.navbar {
+    opacity: .8;
+}
+
+.logo {
+    margin: 10px 0px 10px 60px;
+    font-family: Squada One;
+}
+
+.siteTitle {
+    text-align: center;
+}
+
 .show-info{
     font-family: 'Dosis', sans-serif;
     margin-bottom: 5px;
