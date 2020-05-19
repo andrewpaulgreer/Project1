@@ -1,33 +1,33 @@
 var particleSettings ={
   "particles": {
     "number": {
-      "value": 80,
+      "value": 250,
       "density": {
         "enable": true,
-        "value_area": 800
+        "value_area": 320.4794372381079
       }
     },
     "color": {
-      "value": "#ffffff"
+      "value": "#068eed"
     },
     "shape": {
       "type": "circle",
       "stroke": {
-        "width": 0,
-        "color": "#000000"
+        "width": 1.5,
+        "color": "#827b82"
       },
       "polygon": {
         "nb_sides": 5
       },
       "image": {
         "src": "img/github.svg",
-        "width": 100,
-        "height": 100
+        "width": 1000,
+        "height": 1000
       }
     },
     "opacity": {
       "value": 0.5,
-      "random": false,
+      "random": true,
       "anim": {
         "enable": false,
         "speed": 1,
@@ -36,13 +36,13 @@ var particleSettings ={
       }
     },
     "size": {
-      "value": 3,
-      "random": true,
+      "value": 2,
+      "random": false,
       "anim": {
-        "enable": false,
-        "speed": 40,
+        "enable": true,
+        "speed": 60,
         "size_min": 0.1,
-        "sync": false
+        "sync": true
       }
     },
     "line_linked": {
