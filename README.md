@@ -17,4 +17,4 @@ Our first group required us to develop an idea for a new web applicaiton using a
 
 ## Site Link
 https://andrewpaulgreer.github.io/Project1/
-[Weather Dashboard](https://andrewpaulgreer.github.io/Project1/)
+[Groovy Concert Search](https://andrewpaulgreer.github.io/Project1/)
